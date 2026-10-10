@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | Minecraft Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <h1>⛏️ MC SERVER</h1>
+            <p>Присоединяйся к лучшему сообществу</p>
+        </div>
+
+        <form class="register-form" id="registerForm">
+            <h2>Регистрация</h2>
+
+            <div class="form-group">
+                <label for="nickname">🎮 Minecraft ник</label>
+                <input type="text" id="nickname" placeholder="Steve" maxlength="16" required>
+                <span class="error" id="nicknameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">🔒 Пароль для входа на сервер</label>
+                <input type="password" id="password" placeholder="Минимум 8 символов" required>
+                <span class="error" id="passwordError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">🔒 Подтвердите пароль</label>
+                <input type="password" id="confirmPassword" placeholder="Повторите пароль" required>
+                <span class="error" id="confirmError"></span>
+            </div>
+
+            <div class="form-group checkbox">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Я согласен с <a href="#">правилами сервера</a></label>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">Зарегистрироваться</button>
+
+            <p class="login-link">Уже есть аккаунт? <a href="#">Войти</a></p>
+        </form>
+
+        <div class="server-info">
+            <div class="info-item">
+                <span class="info-icon">👥</span>
+                <div>
+                    <strong id="onlineCount">--</strong>
+                    <small>игроков онлайн</small>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">🌐</span>
+                <div>
+                    <strong>676676776.aternos.me</strong>
+                    <small>Порт: 30217</small>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">⚡</span>
+                <div>
+                    <strong>24/7</strong>
+                    <small>работает</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">✅</div>
+            <h2>Успешная регистрация!</h2>
+            <p>Твой аккаунт создан. Заходи на сервер:</p>
+            <div class="server-ip">
+                <code>676676776.aternos.me:30217</code>
+            </div>
+            <p class="modal-note">В игре введи: <code>/register пароль пароль</code></p>
+            <button class="btn" onclick="closeModal()">Отлично!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
