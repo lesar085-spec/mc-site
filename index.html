@@ -3,87 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация | Minecraft Server</title>
+    <title>MC Server — Главная</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<link rel="icon" type="image/png" href="avatar.png">
 <body>
     <div class="background"></div>
-    
-    <div class="container">
-        <div class="logo">
-            <h1>⛏️ MC SERVER</h1>
-            <p>Присоединяйся к лучшему сообществу</p>
+
+    <nav class="navbar">
+<nav class="navbar">
+    <div class="nav-logo">
+        <img src="avatar.png" alt="MC Server" class="logo-img">
+        MC SERVER
+    </div>
+    <div class="nav-links">
+        <a href="/" class="active">Главная</a>
+        <a href="/register">Регистрация</a>
+    </div>
+</nav>
+
+    <div class="container main-page">
+        <div class="hero">
+            <h1>Добро пожаловать!</h1>
+            <p class="hero-subtitle">Лучший Minecraft-сервер для друзей и не только</p>
+
+            <div class="server-card">
+                <div class="server-card-label">IP сервера</div>
+                <div class="server-card-ip">
+                    <code id="serverIP">676676776.aternos.me:30217</code>
+                    <button class="copy-btn" onclick="copyServerIP()">📋</button>
+                </div>
+                <div class="server-card-status">
+                    <span class="status-dot"></span>
+                    <span id="onlineCount">--</span> игроков онлайн
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="/register" class="btn btn-primary">📝 Зарегистрироваться</a>
+                <a href="#how-to-play" class="btn btn-secondary">🎮 Как играть</a>
+            </div>
         </div>
 
-        <form class="register-form" id="registerForm">
-            <h2>Регистрация</h2>
-
-            <div class="form-group">
-                <label for="nickname">🎮 Minecraft ник</label>
-                <input type="text" id="nickname" placeholder="Steve" maxlength="16" required>
-                <span class="error" id="nicknameError"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="password">🔒 Пароль для входа на сервер</label>
-                <input type="password" id="password" placeholder="Минимум 8 символов" required>
-                <span class="error" id="passwordError"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="confirmPassword">🔒 Подтвердите пароль</label>
-                <input type="password" id="confirmPassword" placeholder="Повторите пароль" required>
-                <span class="error" id="confirmError"></span>
-            </div>
-
-            <div class="form-group checkbox">
-                <input type="checkbox" id="terms" required>
-                <label for="terms">Я согласен с <a href="#">правилами сервера</a></label>
-            </div>
-
-            <button type="submit" class="btn" id="submitBtn">Зарегистрироваться</button>
-
-            <p class="login-link">Уже есть аккаунт? <a href="#">Войти</a></p>
-        </form>
-
-        <div class="server-info">
-            <div class="info-item">
-                <span class="info-icon">👥</span>
-                <div>
-                    <strong id="onlineCount">--</strong>
-                    <small>игроков онлайн</small>
+        <section id="how-to-play" class="how-to-play">
+            <h2>Как начать играть</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Зарегистрируйся на сайте</h3>
+                        <p>Придумай ник и пароль — они понадобятся для входа на сервер</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Запусти Minecraft</h3>
+                        <p>Любая версия от 1.16.5 до 1.21</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Добавь сервер</h3>
+                        <p>IP: <code>676676776.aternos.me:30217</code></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Введи команду</h3>
+                        <p>В чате напиши: <code>/register твой_пароль твой_пароль</code></p>
+                    </div>
                 </div>
             </div>
-            <div class="info-item">
-                <span class="info-icon">🌐</span>
-                <div>
-                    <strong>676676776.aternos.me</strong>
-                    <small>Порт: 30217</small>
-                </div>
-            </div>
-            <div class="info-item">
-                <span class="info-icon">⚡</span>
-                <div>
-                    <strong>24/7</strong>
-                    <small>работает</small>
-                </div>
-            </div>
-        </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 MC Server. Сделано с ❤️ для игроков.</p>
+        </footer>
     </div>
 
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="modal-icon">✅</div>
-            <h2>Успешная регистрация!</h2>
-            <p>Твой аккаунт создан. Заходи на сервер:</p>
-            <div class="server-ip">
-                <code>676676776.aternos.me:30217</code>
-            </div>
-            <p class="modal-note">В игре введи: <code>/register пароль пароль</code></p>
-            <button class="btn" onclick="closeModal()">Отлично!</button>
-        </div>
-    </div>
+    <script>
+        async function updateOnline() {
+            try {
+                const response = await fetch('/api/server-status');
+                const data = await response.json();
+                document.getElementById('onlineCount').textContent = data.online;
+            } catch {
+                document.getElementById('onlineCount').textContent = '?';
+            }
+        }
 
-    <script src="script.js"></script>
+        function copyServerIP() {
+            navigator.clipboard.writeText('676676776.aternos.me:30217').then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const old = btn.textContent;
+                btn.textContent = '✅';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
+        updateOnline();
+        setInterval(updateOnline, 30000);
+    </script>
 </body>
 </html>
